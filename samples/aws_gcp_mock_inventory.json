@@ -1,0 +1,83 @@
+{
+  "environment": "lab-fintech-sim",
+  "generated_at": "2026-04-17T00:00:00Z",
+  "assets": [
+    {
+      "id": "aws-s3-claims-export",
+      "provider": "aws",
+      "type": "s3_bucket",
+      "name": "claims-export-prod",
+      "attributes": {
+        "public_access": true,
+        "encryption_at_rest": false,
+        "data_classification": "pci"
+      }
+    },
+    {
+      "id": "aws-rds-loan-core",
+      "provider": "aws",
+      "type": "rds_instance",
+      "name": "loan-core-pg",
+      "attributes": {
+        "encryption_at_rest": false,
+        "publicly_accessible": false,
+        "data_classification": "pii"
+      }
+    },
+    {
+      "id": "aws-iam-admin-mesh",
+      "provider": "aws",
+      "type": "iam_role",
+      "name": "mesh-admin",
+      "attributes": {
+        "policy_effect": "Allow",
+        "actions": ["*"],
+        "resources": ["*"],
+        "mfa_required": false
+      }
+    },
+    {
+      "id": "aws-sg-api-edge",
+      "provider": "aws",
+      "type": "security_group",
+      "name": "api-edge-sg",
+      "attributes": {
+        "ingress_cidrs": ["0.0.0.0/0"],
+        "ports": [443, 22]
+      }
+    },
+    {
+      "id": "gcp-gcs-state",
+      "provider": "gcp",
+      "type": "gcs_bucket",
+      "name": "tf-state-org",
+      "attributes": {
+        "uniform_bucket_level_access": true,
+        "public_access_prevention": "enforced",
+        "logging_enabled": false,
+        "data_classification": "internal"
+      }
+    },
+    {
+      "id": "gcp-sql-gold",
+      "provider": "gcp",
+      "type": "cloud_sql",
+      "name": "gold-pricing",
+      "attributes": {
+        "encryption_at_rest": true,
+        "authorized_networks": ["0.0.0.0/0"],
+        "data_classification": "confidential"
+      }
+    },
+    {
+      "id": "gcp-sa-batch",
+      "provider": "gcp",
+      "type": "service_account",
+      "name": "batch-etl@project.iam.gserviceaccount.com",
+      "attributes": {
+        "keys_age_days": 400,
+        "roles": ["roles/owner"]
+      }
+    }
+  ]
+}

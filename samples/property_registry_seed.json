@@ -1,0 +1,260 @@
+{
+  "properties": [
+    {
+      "property_code": "PR-DEL-001",
+      "parcel_number": "DL-17-044-9001",
+      "address": "14 Civil Lines, Delhi",
+      "district": "Central Delhi",
+      "property_type": "Residential",
+      "area_sqft": 2400,
+      "market_value": 14500000,
+      "owner_name": "Aarav Mehta",
+      "owner_wallet": "0xa1f2c3349de77c11",
+      "registration_status": "registered",
+      "created_at": "2026-01-04T10:00:00Z",
+      "last_transfer_at": "2026-01-04T10:00:00Z"
+    },
+    {
+      "property_code": "PR-MUM-014",
+      "parcel_number": "MH-08-881-7714",
+      "address": "208 Marine Drive, Mumbai",
+      "district": "Mumbai City",
+      "property_type": "Commercial",
+      "area_sqft": 5200,
+      "market_value": 48800000,
+      "owner_name": "Nexa Retail LLP",
+      "owner_wallet": "0xb4227ef892219a01",
+      "registration_status": "pending_transfer",
+      "created_at": "2025-11-12T09:30:00Z",
+      "last_transfer_at": "2026-03-18T12:15:00Z"
+    },
+    {
+      "property_code": "PR-BLR-022",
+      "parcel_number": "KA-91-100-6602",
+      "address": "88 Whitefield Ring Road, Bengaluru",
+      "district": "Bengaluru Urban",
+      "property_type": "Industrial",
+      "area_sqft": 11800,
+      "market_value": 61200000,
+      "owner_name": "Verity Logistics Pvt Ltd",
+      "owner_wallet": "0xc87354a8128d5ee2",
+      "registration_status": "disputed",
+      "created_at": "2025-07-20T07:40:00Z",
+      "last_transfer_at": "2026-03-28T08:20:00Z"
+    }
+  ],
+  "ledger_blocks": [
+    {
+      "property_code": "PR-DEL-001",
+      "transaction_type": "property_registration",
+      "actor": "Registrar South Zone",
+      "validator_node": "validator-delhi-1",
+      "consensus_status": "validated",
+      "created_at": "2026-01-04T10:00:00Z",
+      "payload": {
+        "owner_name": "Aarav Mehta",
+        "owner_wallet": "0xa1f2c3349de77c11",
+        "district": "Central Delhi"
+      }
+    },
+    {
+      "property_code": "PR-MUM-014",
+      "transaction_type": "property_registration",
+      "actor": "Registrar West Zone",
+      "validator_node": "validator-mumbai-1",
+      "consensus_status": "validated",
+      "created_at": "2025-11-12T09:30:00Z",
+      "payload": {
+        "owner_name": "Nexa Retail LLP",
+        "owner_wallet": "0xb4227ef892219a01",
+        "district": "Mumbai City"
+      }
+    },
+    {
+      "property_code": "PR-BLR-022",
+      "transaction_type": "property_registration",
+      "actor": "Registrar South Grid",
+      "validator_node": "validator-blr-2",
+      "consensus_status": "validated",
+      "created_at": "2025-07-20T07:40:00Z",
+      "payload": {
+        "owner_name": "Verity Logistics Pvt Ltd",
+        "owner_wallet": "0xc87354a8128d5ee2",
+        "district": "Bengaluru Urban"
+      }
+    },
+    {
+      "property_code": "PR-MUM-014",
+      "transaction_type": "transfer_requested",
+      "actor": "Nexa Retail LLP",
+      "validator_node": "validator-west-2",
+      "consensus_status": "pending_review",
+      "created_at": "2026-03-18T12:15:00Z",
+      "payload": {
+        "buyer_name": "BlueRock Holdings",
+        "buyer_wallet": "0x991ca0f0b67ce1c2",
+        "fraud_score": 46,
+        "document_hash": "sha256:6ae7ca22a5f8c224"
+      }
+    },
+    {
+      "property_code": "PR-BLR-022",
+      "transaction_type": "title_freeze",
+      "actor": "Fraud Desk",
+      "validator_node": "validator-blr-2",
+      "consensus_status": "validated",
+      "created_at": "2026-03-28T08:20:00Z",
+      "payload": {
+        "reason": "Competing title claim and inconsistent deed digest",
+        "ticket": "IR-2026-041"
+      }
+    }
+  ],
+  "transfer_requests": [
+    {
+      "property_code": "PR-MUM-014",
+      "seller_name": "Nexa Retail LLP",
+      "buyer_name": "BlueRock Holdings",
+      "buyer_wallet": "0x991ca0f0b67ce1c2",
+      "consideration_amount": 69000000,
+      "document_hash": "sha256:6ae7ca22a5f8c224",
+      "submission_channel": "email_attachment",
+      "smart_contract_ref": "SC-MUM-014-TX-03",
+      "fraud_score": 46,
+      "status": "pending",
+      "created_at": "2026-03-18T12:15:00Z"
+    },
+    {
+      "property_code": "PR-BLR-022",
+      "seller_name": "Verity Logistics Pvt Ltd",
+      "buyer_name": "Helios Warehousing",
+      "buyer_wallet": "wallet-manual-8891",
+      "consideration_amount": 20100000,
+      "document_hash": "sha256:d1ff09e92c4491ab",
+      "submission_channel": "walk_in_agent",
+      "smart_contract_ref": "SC-BLR-022-TX-09",
+      "fraud_score": 75,
+      "status": "rejected",
+      "created_at": "2026-03-28T08:15:00Z"
+    }
+  ],
+  "security_findings": [
+    {
+      "asset_id": "PR-BLR-022",
+      "provider": "blockchain",
+      "asset_type": "smart_contract",
+      "finding_type": "forged_document_hash",
+      "title": "Mismatched deed digest detected during ownership challenge",
+      "detail": "The notarized deed hash supplied by the claimant does not match the digest committed in the title transfer workflow.",
+      "likelihood": 0.9,
+      "impact": 0.95,
+      "exposure": 0.9,
+      "data_classification": "title_deed",
+      "status": "open",
+      "created_at": "2026-03-28T08:25:00Z"
+    },
+    {
+      "asset_id": "registry-admin-api",
+      "provider": "api",
+      "asset_type": "admin_portal",
+      "finding_type": "privileged_registry_override",
+      "title": "Registrar admin API can update title state outside contract flow",
+      "detail": "A legacy maintenance endpoint still permits direct title mutations without multi-party signing or an immutable on-chain event trail.",
+      "likelihood": 0.72,
+      "impact": 0.93,
+      "exposure": 0.88,
+      "data_classification": "citizen_pii",
+      "status": "open",
+      "created_at": "2026-04-02T05:10:00Z"
+    },
+    {
+      "asset_id": "validator-west-2",
+      "provider": "blockchain",
+      "asset_type": "validator_node",
+      "finding_type": "missing_multisig_approval",
+      "title": "Validator accepted transfer request before all approver signatures were present",
+      "detail": "A transfer-request block was committed in pending-review state with only registrar approval recorded.",
+      "likelihood": 0.61,
+      "impact": 0.78,
+      "exposure": 0.7,
+      "data_classification": "title_deed",
+      "status": "open",
+      "created_at": "2026-03-18T12:30:00Z"
+    },
+    {
+      "asset_id": "wallet-ops",
+      "provider": "identity",
+      "asset_type": "operator_wallet",
+      "finding_type": "weak_wallet_hygiene",
+      "title": "Two registrar operators are still using software wallets without HSM protection",
+      "detail": "Key material is stored outside the approved custody module, increasing phishing and signing-theft risk.",
+      "likelihood": 0.57,
+      "impact": 0.69,
+      "exposure": 0.8,
+      "data_classification": "internal",
+      "status": "open",
+      "created_at": "2026-04-05T09:20:00Z"
+    },
+    {
+      "asset_id": "evidence-vault",
+      "provider": "storage",
+      "asset_type": "backup_store",
+      "finding_type": "missing_offchain_backup",
+      "title": "Immutable backup policy is missing for signed title packets",
+      "detail": "The registry retains notarized uploads in hot storage only; no offline or WORM backup copy is enforced.",
+      "likelihood": 0.48,
+      "impact": 0.76,
+      "exposure": 0.55,
+      "data_classification": "title_deed",
+      "status": "accepted",
+      "created_at": "2026-04-01T11:00:00Z"
+    }
+  ],
+  "evidence_items": [
+    {
+      "finding_title": "Mismatched deed digest detected during ownership challenge",
+      "title": "Forensic notarization report",
+      "evidence_type": "config_snapshot",
+      "content": "ipfs://ledger-audit/blr-022/notary-report-v3.json",
+      "owner": "fraud.cell@propertychain.local",
+      "status": "verified",
+      "created_at": "2026-03-28T09:00:00Z"
+    },
+    {
+      "finding_title": "Registrar admin API can update title state outside contract flow",
+      "title": "Legacy endpoint screen capture",
+      "evidence_type": "screenshot",
+      "content": "/secure-share/legacy-admin-endpoint.png",
+      "owner": "appsec@propertychain.local",
+      "status": "collected",
+      "created_at": "2026-04-02T06:00:00Z"
+    },
+    {
+      "finding_title": "Validator accepted transfer request before all approver signatures were present",
+      "title": "Validator consensus log excerpt",
+      "evidence_type": "note",
+      "content": "Only registrar and survey metadata were attached; legal-approver wallet signature absent.",
+      "owner": "soc@propertychain.local",
+      "status": "pending",
+      "created_at": "2026-03-18T13:05:00Z"
+    }
+  ],
+  "incident_tickets": [
+    {
+      "event_type": "title_fraud_claim",
+      "severity": "sev1",
+      "affected_system": "PR-BLR-022 title workflow",
+      "containment_steps": "Freeze title state, preserve validator logs, and route all manual approvals to the fraud desk.",
+      "escalation_status": "war_room",
+      "created_at": "2026-03-28T08:30:00Z"
+    },
+    {
+      "event_type": "wallet_compromise_suspected",
+      "severity": "sev2",
+      "affected_system": "Registrar signing wallets",
+      "containment_steps": "Rotate registrar keys, disable affected operators, and verify recent signatures against HSM inventory.",
+      "escalation_status": "triage",
+      "created_at": "2026-04-05T10:00:00Z"
+    }
+  ]
+}
